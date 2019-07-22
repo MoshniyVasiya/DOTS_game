@@ -1,9 +1,12 @@
 import React from 'react';
+import Button from './button';
+
+
 
 function Horizontal() { 
 return( 
     <div id="horizontal">
-        {/* <button id="button"></button> */}
+        
     </div>
 )
 }
@@ -24,7 +27,8 @@ export default class Battlefield extends React.Component {
 
     render(){   
         return (    
-            <div id="battlefield">   
+            <div id="battlefield"> 
+                <Button />  
                 <div id="horizontals">
                 <Horizontal />
                 <Horizontal />
