@@ -13,9 +13,9 @@ constructor(){
 
 dotClick() { 
      
-this.setState={ 
+this.setState({ 
     clicked: 'yellow',
-}
+})
     
 }
 

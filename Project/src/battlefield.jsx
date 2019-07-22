@@ -78,8 +78,6 @@ export default class Battlefield extends React.Component {
                 <Vertical />
                 <Vertical />
                 <Vertical />
-
-                
                 </div>
                
 
