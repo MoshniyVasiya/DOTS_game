@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class Button extends React.Component{    
-constructor(){  
+constructor(props){  
     super();
 
 
@@ -27,7 +27,7 @@ this.setState({
       styles.backgroundColor = this.state.clicked; 
     }
         return( 
-            <button id="button" onClick={this.dotClick} style={styles} />
+            <button  id="button" onClick={this.dotClick} style={styles} />
         )
     }
 }
