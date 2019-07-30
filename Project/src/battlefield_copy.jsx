@@ -7,7 +7,8 @@ export default class Battlefield extends React.Component {
     constructor(){  
         super();
 
-        this.state = {  
+        this.state = { 
+            
             dots: [
                 {key: 1},
                 {key: 2},
@@ -29,16 +30,20 @@ export default class Battlefield extends React.Component {
         }
     }
 
+    
+    
+
 
     render(){   
         return (    
             <div id="battlefield"> 
                              
-                <Square ><Button index={this.state.dots[0].key}/></Square>
+                <Square index={this.state.dots}/>
+                <Square />                
                 <Square />
+                <Square ></Square>
                 <Square />
-                <Square />
-                <Square />
+                
                 <Square />
                 <Square />
                 <Square />

@@ -1,7 +1,8 @@
 import React from 'react';
+import Battlefield from './battlefield_copy';
 
 export default class Button extends React.Component{    
-constructor(props){  
+constructor(){  
     super();
 
 
@@ -12,11 +13,12 @@ constructor(props){
 }
 
 dotClick() { 
-     
+
 this.setState({ 
     clicked: 'yellow',
-})
     
+})
+   console.log(this.props) 
 }
 
 
@@ -26,8 +28,9 @@ this.setState({
     if (this.state.clicked) {
       styles.backgroundColor = this.state.clicked; 
     }
+   
         return( 
-            <button  id="button" onClick={this.dotClick} style={styles} />
+            <button  className="button" onClick={this.dotClick} style={styles} />
         )
     }
 }
