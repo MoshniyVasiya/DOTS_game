@@ -1,0 +1,99 @@
+body {  
+    background: black ;
+    z-index: 1;
+}
+#container {    
+    max-width: 990px;
+    margin: 50px auto 40px;
+    background: transparent ; 
+    z-index: 10;
+    height: 100%;
+    
+}
+#container h1 { 
+    text-align: center;
+    color: rgb(101, 202, 147);
+    text-shadow: 1px 1px 40px rgb(101, 202, 147);
+    font-size: 42px;
+}
+#battlefield {  
+    border: 6px solid rgb(101, 202, 147);
+    border-radius: 2%;
+    box-shadow: 0 0 20px rgb(101, 202, 147);
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 0  auto;
+    
+    
+    
+}
+#horizontals {  
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+#horizontal {   
+    border: 4px solid rgb(101, 202, 147);
+    box-shadow: 0 0 20px rgb(101, 202, 147);
+    margin-top: 30px;
+}
+#horizontal:last-child{ 
+    margin-bottom: 30px;
+}
+#vertical { 
+    
+    border: 4px solid rgb(101, 202, 147);
+    box-shadow: 0 0 20px rgb(101, 202, 147);
+    margin-right: 30px;
+}
+#vertical:first-child{  
+    margin-left: 30px;
+}
+#verticals {    
+    display:flex;
+    justify-content: space-evenly;
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+#square {   
+    position: relative;
+}
+.button {   
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color:transparent;
+    border: 0;
+    position: absolute;
+    top: -6.5px;
+    left: -6.5px;
+    z-index: 20;
+}
+
+.button:hover{  
+    background-color: red;
+}
+
+
+
+
+
+#square {   
+    box-sizing: border-box;
+    border: 1px solid rgb(101, 202, 147);
+    width: 125px;
+    height: 125px;
+    float: left;
+}
+
+
+
+.dots { 
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border: 1px solid rgb(101, 202, 147);
+    border-radius: 50%;
+}
