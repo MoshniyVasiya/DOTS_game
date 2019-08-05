@@ -38,9 +38,12 @@ class App extends React.Component {
 
         changer.disabled = true;
 
-        for( i - 1; i <= 1; i++){  
+        for( i - 1; i <= 1; i++){ 
+             
             for( j - 1; j <= 1; j++){  
-
+                if(this.state.color === 'red'){
+                    
+                }
             }
         }
         if(changer === ( (i-1&j-1) && (i-1&j) && (i-1&j+1) && (i&j-1) && (i&j+1) && (i+1&j-1) && (i+1&j) && (i+1&j+1)) ){   
