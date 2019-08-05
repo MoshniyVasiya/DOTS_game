@@ -1,103 +1,78 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Battlefield from '../src/battlefield_copy';
-
-const getColor = player => {
-    if (!player) {
-        return 'none';
-    }
-
-    return player === 1 ? 'red' : 'green';
-}
-
-const Dot = ({ onClick, top, left, player }) => <div onClick={onClick} disabled={player} className="dots" style={{ background: getColor(player), top: top * 50, left: left * 50 }}></div>
-
-
-// const dots = [{ r1c1}, {r1c2}, {r2,c1}, {r2c2}]
-
-
-// const dots2 = { 'r1c1': {}, 'r1c2': {} }
-
-// const dotsNew = { ...dots2, [key]: { player: getPlayer }}
-
-// Object.keys(this.state.dots).map(key => <Dot key={key} onClick />)
-
+import Dot from './button'
 
 class App extends React.Component {
     constructor() {
         super();
 
-        this.state = {
-            dots: [
-                [{}, {}, { player: 1 }, { color: 'none', disabled: false }, { color: 'none', disabled: false }],
-                [{ color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }],
-                [{ color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }],
-                [{ color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }],
-                [{ color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }, { color: 'none', disabled: false }],
-            ],
-            player: false,
+        function createDots() {
+            const dotArr = [];
+            for (let i = 0; i < 5; i++) {
+                dotArr[i] = [];
+                for (let j = 0; j < 5; j++) {
+                    dotArr[i][j] = { color: 'transparent', disabled: false };
+                }
+            }
+            return dotArr
         }
 
-
-        this.onClick.bind(this);
+        this.state = {
+            dots: createDots(),
+            player: 1,
+        }
     }
-    onMouseMove(e) {
-        // console.log(e.nativeEvent.offsetX, e.nativeEvent.offsetY);
 
+    playerChanger() {
+        return this.state.player === 1 ? 2 : 1;
     }
+
+    colorChanger() {
+        return this.state.player === 1 ? 'red' : 'blue'
+    }
+
 
     onClick(i, j) {
-        const dotObj = { player: this.state.player }
-        const nextPlayer = this.state.player === 1 ? 2 : 1;
-        const newState = {
-            dots: [ ...this.state.dots,  ], // изменить нужную точку
-            player: nextPlayer
+        const changer = this.state.dots[i][j];
+        changer.color = this.colorChanger();
+
+        changer.disabled = true;
+
+        for( i - 1; i <= 1; i++){  
+            for( j - 1; j <= 1; j++){  
+
+            }
+        }
+        if(changer === ( (i-1&j-1) && (i-1&j) && (i-1&j+1) && (i&j-1) && (i&j+1) && (i+1&j-1) && (i+1&j) && (i+1&j+1)) ){   
+            console.log('hi')
         }
 
-        this.setState({ ...this.state, newState })
+        this.setState({
+            dots: [...this.state.dots],
+            player: this.playerChanger(),
 
+        })
 
-            
-            // this.state.dots.color
-            // this.setState({ 
-            //     dots:[[{color: 'red'}]]
-            // })
-        } 
-        // else if (this.state.player == true) {
-        //     this.props.style.background = 'blue';
-        //     this.setState = ({
-        //         player: false,
-        //     })
-        // }
-
-    
-
+    }
 
     render() {
-        // const arr = this.state.dots;
-        // const div = [];
-        // for (let i in arr) {
-        //     for (let j in arr[i]) {
-        //         div.push(<div onClick={this.onClick.bind(this)} className="dots" key={i + j} style={{ background: this.state.dots[i][j].color, top: i * 50, left: j * 50 }}></div>)
-        //     }
 
-        // }
-        // console.log(div);
-
-
+        console.log(this.state.player);
 
 
         return (
-            <div id="battlefield" onMouseMove={this.onMouseMove.bind(this)}>
+            <div id="battlefield">
                 {this.state.dots.map((row, i) =>
                     row.map((cell, j) => (
                         <Dot
                             onClick={() => this.onClick(i, j)}
                             top={i}
                             left={j}
-                            color={cell.color}
-                            key={'' + i + j}
+                            color={this.state.dots[i][j].color}
+                            disabled={this.state.dots[i][j].disabled}
+                            key={i + j}
                         />
+
                     ))
                 )}
             </div>
