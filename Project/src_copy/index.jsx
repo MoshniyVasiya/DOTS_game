@@ -38,29 +38,34 @@ class App extends React.Component {
 
         changer.disabled = true;
 
-        for( i - 1; i <= 1; i++){ 
-             
-            for( j - 1; j <= 1; j++){  
-                if(this.state.color === 'red'){
-                    
-                }
-            }
-        }
-        if(changer === ( (i-1&j-1) && (i-1&j) && (i-1&j+1) && (i&j-1) && (i&j+1) && (i+1&j-1) && (i+1&j) && (i+1&j+1)) ){   
-            console.log('hi')
-        }
-
         this.setState({
             dots: [...this.state.dots],
             player: this.playerChanger(),
 
         })
 
+
+        function surroundCheck(i, j) {
+            let entryPoint = this.state.dots[i][j];
+            if (entryPoint.color === 'red') {
+                for (let x = i - 1; x <= i + 1; x++) {
+                    for (let y = j - 1; y <= j + 1; y++) {
+                        if (entryPoint.color === 'blue' || entryPoint.color === 'transparent') {
+                            return console.log(' похожих соседей нет')
+                        } else if (entryPoint.color === 'red') {
+                            surroundCheck(this.state.dots[x][y])
+                        }
+                    }
+                }
+            }
+        }
     }
+
+
 
     render() {
 
-        console.log(this.state.player);
+        console.log(this.state.dots);
 
 
         return (
