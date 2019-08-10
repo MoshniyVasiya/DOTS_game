@@ -1,0 +1,30 @@
+{
+  "name": "y",
+  "version": "0.0.1",
+  "description": "game",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "rm -rf dist && parcel build index.html --public-url /DOTS_game",
+    "deploy": "cp ./dist/index.html ./dist/404.html && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "DOTS_game"
+  },
+  "keywords": [
+    "dots",
+    "game"
+  ],
+  "author": "Mighty_V",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "gh-pages": "^2.0.1",
+    "parcel-plugin-sw-precache": "^1.1.1"
+  }
+}
