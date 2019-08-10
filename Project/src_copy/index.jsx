@@ -104,15 +104,22 @@ class App extends React.Component {
 
     logic() {
         for (let y0 = 0; y0 < this.state.dots.length; y0 += 1) {
+          
           for (let x0 = 0; x0 < this.state.dots[y0].length; x0 += 1) {
+           
             const dot =  this.state.dots[y0][x0];
-    
-            if (dot.color !== 'transparent' && !dot.disable) {
+            
+            if (dot.color !== 'transparent' && !dot.disable ) {
               const needColor = dot.color === 'red' ? 'blue' : 'red';
     
               out: for (let dy = -1; dy < 2; dy += 1) {
                 for (let dx = -1; dx < 2; dx += 1) {
-                  if (this.state.dots[y0 + dy][x0 + dx].color === needColor) {
+                 
+                  if (this.state.dots[y0 + dy][x0 + dx].color === needColor ) {
+                    
+                      
+                      
+                    
                     const result = this.rec(needColor, -1, -1,  y0 + dy, x0 + dx, []);
                     
 
@@ -139,7 +146,7 @@ class App extends React.Component {
                       console.log(result);
                       dot.disabled = true;
     
-                      for (let i = 0; i < result.length - 2; i += 1) {
+                      for (let i = 0; i < result.length - 1; i += 1) {
                         this.state.lines.push([result[i].split('-'), result[i + 1].split('-'), needColor]);
                       }
     
@@ -148,6 +155,7 @@ class App extends React.Component {
                       break out;
                     }
                   }
+                  
                 }
               }
               
@@ -191,8 +199,7 @@ class App extends React.Component {
     onClick(i, j) {
         const changer = this.state.dots[i][j];
         changer.color = this.colorChanger();
-        const arr = this.state.dots;
-        const color = this.state.dots[i][j].color;
+       
         
 
         this.setState({
