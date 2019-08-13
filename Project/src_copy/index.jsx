@@ -66,32 +66,65 @@ class App extends React.Component {
         if (dot.color !== 'transparent') {
           const needColor = dot.color === p1Color ? p2Color : p1Color;
 
-          function funcIf(y0, x0) {
+          function funcIf (y0,x0){
             let resultDy;
-            let length;
-            if (y0 === 0 || x0 === 0) {
+            let lengthY;
+            let resultDx;
+            let lengthX;
+            if(y0===0 && x0===0){
+              resultDy=0;
+              lengthY=2;
+              resultDx=0;
+              lengthX=2;
+            }else if(y0===0 && x0===9){
+              resultDy=0;
+              lengthY=2;
+              resultDx=-1;
+              lengthX=1;
+            }else if(y0===9 && x0===0){
+              resultDy=-1;
+              lengthY=1;
+              resultDx=0;
+              lengthX=2;
+            }else if(y0===9 && x0===9){
+              resultDy=-1;
+              lengthY=1;
+              resultDx=-1;
+              lengthX=1;
+            }else if(y0===0){
               resultDy = 0;
-              length = 2
-            }
-            else if (y0 === 9) {
-              resultDy = 1
-              length = 0
-            }
-            else if (x0 === 9) {
-              resultDy = -1;
-              length = 0
-            }
-            else {
-              resultDy = -1
-              length = 2
+              lengthY=2;
+              resultDx=-1;
+              lengthX=2;
+            }else if(y0===9){
+              resultDy=-1;
+              lengthY=1;
+              resultDx=-1;
+              lengthX=2;
+            }else if(x0===0){
+              resultDy=-1;
+              lengthY=2;
+              resultDx=0;
+              lengthX=2;
+            }else if(x0===9){
+              resultDy=-1;
+              lengthY=2;
+              resultDx=-1;
+              lengthX=1;
+            }else{
+              resultDy=-1;
+              lengthY=2;
+              resultDx=-1;
+              lengthX=2;
             }
 
-            return { cycleValue: resultDy, cycleLength: length }
+            return {cycleValueY:resultDy, cycleLengthY:lengthY, cycleValueX:resultDx, cycleLengthX:lengthX}
           };
-          const resultFuncIf = funcIf(y0, x0)
+         const resultFuncIf = funcIf(y0,x0)
+          
 
-          out: for (let dy = resultFuncIf.cycleValue; dy < resultFuncIf.cycleLength; dy += 1) {
-            for (let dx = resultFuncIf.cycleValue; dx < resultFuncIf.cycleLength; dx += 1) {
+          out: for (let dy = resultFuncIf.cycleValueY; dy < resultFuncIf.cycleLengthY; dy += 1) {
+                 for (let dx = resultFuncIf.cycleValueX; dx < resultFuncIf.cycleLengthX; dx += 1) {
 
               if (this.state.dots[y0 + dy][x0 + dx].color === needColor) {
 
@@ -149,31 +182,64 @@ class App extends React.Component {
   rec(color, fy, fx, y, x, visited) {
     visited = [...visited, `${y}-${x}`];
 
-    function funcIfRec(y, x) {
+    function funcIfRec (y,x){
       let resultRecY;
       let lengthY;
-      if (y === 0 || x === 0) {
-        resultRecY = 0;
-        lengthY = 2
-      } else if (y === 9) {
-        resultRecY = -1
-        lengthY = 0
-      }
-      else if (x === 9) {
-        resultRecY = -1;
-        lengthY = 0
-      }
-      else {
-        resultRecY = -1
-        lengthY = 2
-      }
+      let resultRecX;
+      let lengthX;
+            if(y===0 && x===0){
+              resultRecY=0;
+              lengthY=2;
+              resultRecX=0;
+              lengthX=2;
+            }else if(y===0 && x===9){
+              resultRecY=0;
+              lengthY=2;
+              resultRecX=-1;
+              lengthX=1;
+            }else if(y===9 && x===0){
+              resultRecY=-1;
+              lengthY=1;
+              resultRecX=0;
+              lengthX=2;
+            }else if(y===9 && x===9){
+              resultRecY=-1;
+              lengthY=1;
+              resultRecX=-1;
+              lengthX=1;
+            }else if(y===0){
+              resultRecY = 0;
+              lengthY=2;
+              resultRecX=-1;
+              lengthX=2;
+            }else if(y===9){
+              resultRecY=-1;
+              lengthY=1;
+              resultRecX=-1;
+              lengthX=2;
+            }else if(x===0){
+              resultRecY=-1;
+              lengthY=2;
+              resultRecX=0;
+              lengthX=2;
+            }else if(x===9){
+              resultRecY=-1;
+              lengthY=2;
+              resultRecX=-1;
+              lengthX=1;
+            }else{
+              resultRecY=-1;
+              lengthY=2;
+              resultRecX=-1;
+              lengthX=2;
+            }
 
-      return { cycleValue: resultRecY, cycleLength: lengthY }
+            return {cycleValueY:resultRecY, cycleLengthY:lengthY, cycleValueX:resultRecX, cycleLengthX:lengthX}
     };
-    const resultFuncIfRec = funcIfRec(y, x)
+    const resultFuncIfRec = funcIfRec (y,x)
 
-    for (let dy = resultFuncIfRec.cycleValue; dy < resultFuncIfRec.cycleLength; dy += 1) {
-      for (let dx = resultFuncIfRec.cycleValue; dx < resultFuncIfRec.cycleLength; dx += 1) {
+    for (let dy = resultFuncIfRec.cycleValueY; dy < resultFuncIfRec.cycleLengthY; dy += 1) {
+      for (let dx = resultFuncIfRec.cycleValueX; dx < resultFuncIfRec.cycleLengthX; dx += 1) {
         if (dy === 0 && dx === 0) {
           continue;
         }
