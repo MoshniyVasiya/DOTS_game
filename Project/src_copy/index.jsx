@@ -150,7 +150,7 @@ class App extends React.Component {
 
                 }
 
-                if (result && result.length >= 4 && a[0] && a[1] && a[2] && a[3] && i % 2 == 0) {
+                if (result && result.length >= 4 && a[0] && a[1] && a[2] && a[3]) {
 
                   console.log(result);
                   dot.color = 'black';
