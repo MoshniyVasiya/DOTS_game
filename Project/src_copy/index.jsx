@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dot from './button'
 import Header from './header'
-
-
+import Menu from './components/menu/menu'
+import BodyNav from './components/menu/bodyNav'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import Rule from './components/rule/rule'
 class App extends React.Component {
   constructor() {
     super();
@@ -26,6 +28,7 @@ class App extends React.Component {
       lines: [],
       p1Color: '',
       p2Color: '',
+      menu: false,
     }
     this.handleChangeCompleteP1 = this.handleChangeCompleteP1.bind(this);
     this.handleChangeCompleteP2 = this.handleChangeCompleteP2.bind(this);
@@ -48,9 +51,7 @@ class App extends React.Component {
   }
 
   colorChanger() {
-    if(this.state.player === 1 && this.state.p1Color !== this.state.p2Color){
-      return this.state.player === 1 ? this.state.p1Color : this.state.p2Color;
-    }
+    return this.state.player === 1 ? this.state.p1Color : this.state.p2Color;
   }
 
   logic() {
@@ -116,7 +117,7 @@ class App extends React.Component {
 
                 }
 
-                if (result && result.length >= 4 && a[0] && a[1] && a[2] && a[3]) {
+                if (result && result.length >= 4 && a[0] && a[1] && a[2] && a[3] && i % 2 == 0) {
 
                   console.log(result);
                   dot.color = 'black';
@@ -216,7 +217,11 @@ class App extends React.Component {
     
 
 
-
+  menuFunc(){
+    this.setState({
+      menu: !this.state.menu
+    })
+  }
 
   render() {
 
@@ -225,6 +230,7 @@ class App extends React.Component {
     
 
     return (
+      <Router>
       <div id="container">
         <Header 
         colorP1={this.state.p1Color}
@@ -232,6 +238,13 @@ class App extends React.Component {
         colorP2={this.state.p2Color}
         handleChangeCompleteP2={this.handleChangeCompleteP2}
         />
+        <BodyNav
+          open={this.state.menu}
+        />
+        <Menu menuClick={this.menuFunc.bind(this)}
+          open={this.state.menu}/>
+          <Switch >
+          <Route path='/' exact render={()=>
         <div id="battlefield">
           {this.state.dots.map((row, i) =>
             row.map((cell, j) => (
@@ -261,8 +274,11 @@ class App extends React.Component {
             ))}
           </svg>
         </div>
+          }/>
+        <Route path="/rule" component={Rule} />
+        </Switch>
       </div>
-    )
+      </Router>)
   }
 }
 
